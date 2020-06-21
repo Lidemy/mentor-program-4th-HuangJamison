@@ -22,5 +22,11 @@
 13. 發送 PR 與跟助教說明此次作業遇到的狀況
 14. 交作業後看參考解答
 15. 等待助教 merge 以及助教會刪除線上 branch
-16. 最後，刪除本地端 branch 
+16. 補充： `git checkout master`
+17. 把助教批改完的抓下來 `git pull origin master`
+18. 最後，刪除本地端 branch 
     `git branch -d week1`
+
+補充： `git init` 把整份檔案都記起來，才知道最一開始長什麼樣子
+      最近才發現 PR 會自動更新，我每次還都在按一次XD
+      因為 PR 的主體是「branch」，所以 branch 更新了，PR 的內容自然也會一起更新。
