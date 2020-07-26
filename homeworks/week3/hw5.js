@@ -50,16 +50,10 @@ function judge(a, b, method) {
       let index = 0;
       while (index < limit) {
         if (Number(a[index]) > Number(b[index])) {
-          if (method === '1') {
-            return 'A';
-          }
-          return 'B';
+          return (method === '1') ? 'A' : 'B';
         }
         if (Number(a[index]) < Number(b[index])) {
-          if (method === '1') {
-            return 'B';
-          }
-          return 'A';
+          return (method === '1') ? 'B' : 'A';
         }
         // eslint-disable-next-line no-plusplus
         index++;
