@@ -21,6 +21,6 @@ url : https://api.happy-eating
 |--------|--------|------------|----------------------|----------------|
 | 拿取所有餐廳 | GET    | /restaurants     | _limit:限制回傳資料數量     | /restaurants?_limit=5 |
 | 獲取單一餐廳資訊 | GET    | /restaurants/:id | 無         | /restaurants/10 |
-| 新增書籍   | POST   | /restaurants     | name: 餐廳名, 地點, menu 等 | 無 |
-| 刪除書籍   | DELETE   | /restaurants/:id  | 無 | 無              |
-| 更改書籍資訊   | PATCH   | /restaurants/:id  | name: 書名 | 無       |
+| 新增餐廳   | POST   | /restaurants     | name: 餐廳名, 地點, menu 等 | 無 |
+| 刪除餐廳   | DELETE   | /restaurants/:id  | 無 | 無              |
+| 更改餐廳資訊   | PATCH   | /restaurants/:id  | name: 餐廳名, 地點, menu 等 | 無 |
