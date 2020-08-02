@@ -10,6 +10,10 @@ request(`${apiUrl}/${keyword}`, (err, res, body) => {
   let data;
   try {
     data = JSON.parse(body);
+    // 修正
+    if (data.status === 404) {
+      console.log('再檢查一下你的request或是...沒這個國家！');
+    }
   } catch (err) {
     console.log(err);
   }

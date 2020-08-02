@@ -33,7 +33,7 @@ request(options, (err, res, body) => {
 
 // 2. xhr 作法
 xhr.onload = () => {
-  if (xhr.status === 200) {
+  if (xhr.status >= 200 && xhr.status < 400) {
     const response = xhr.responseText;
     const data = JSON.parse(response);
     const topGame = data.top;

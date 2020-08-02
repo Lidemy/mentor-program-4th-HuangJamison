@@ -40,5 +40,10 @@ function popularGame(offsetNum = 0) {
     }
   });
 }
-popularGame();
-popularGame(100);
+// 修正順序
+async function getTwitchOrder() {
+  await popularGame();
+  await popularGame(100);
+}
+
+getTwitchOrder();
