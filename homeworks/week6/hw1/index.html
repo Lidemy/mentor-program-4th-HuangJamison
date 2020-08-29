@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <title>餐廳 menu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+  <style>
+    .nav {
+      height: 100px;
+      box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+      background-color: white;
+    }
+    .nav__wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      /* max-width: 1280px; */
+      padding: 15px 20px;
+    }
+    .nav__name {
+      font-size: 36px;
+      color:#489846;
+      margin-left: 20px;
+    }
+    .nav__list {
+      display: flex;
+      margin-right: 10px;
+      text-decoration: none;
+      j
+    }
+    .nav__list-item {
+      margin: 0;
+      padding: 10px;
+      list-style: none;
+      transition: all 0.3s ease;
+      border-radius: 8px;
+    }
+    .nav__list-item a {
+      text-decoration: none;
+      font-size: 18px;
+      color: #010101;
+    }
+    .nav__list-item.active, .nav__list-item:hover {
+      background-color: pink;
+    }
+    .nav__list-item.active a, .nav__list-item:hover a {
+      color: white;
+    }
+    .nav__list-item:not(:last-child) {
+      margin-right: 5px;
+    }
+    @media(max-width: 768px) {
+      .nav__wrap {
+        height: 80px;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 0 auto;
+        padding: 0px;
+        width: 100%;
+        text-align: center;
+      }
+      .nav__name {
+        margin-left: 70px;
+      }
+      .nav__list {
+        display: flex;
+        margin: 0 auto;
+      }
+      .nav__list-item {
+        flex: 1;
+        padding: 5px;
+        border-radius: 0px;
+      }
+      .btn-order {
+        margin-left: 25px;
+        margin-bottom: 16px;
+      }
+      .menu__img {
+        flex-direction: column;
+        align-items: center;
+      }
+      .menu__img div {
+        width: 100%;
+      }
+      .review__comment {
+        flex-direction: column;
+        align-items: center;
+      }
+      .review__comment .review__area {
+        width: 70%;
+      }
+      .review__area ~ .review__area {
+        margin-top: 70px;
+      }
+
+    }
+    .banner {
+      position: relative;
+      height: 400px;
+      background: no-repeat center/cover url('./assets/banner.png');
+    }
+    .banner:after {
+      content: '';
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.5);
+      top:0px;
+      left:0px;
+      bottom: 0px;
+      right: 0px;
+    }
+    .banner__context {
+      display: inline-block;
+      position: relative;
+      color: white;
+      z-index: 2;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin:0;
+      font-size: 60px;
+    }
+    .section {
+      text-align: center;
+      margin-top: 80px;
+      padding: 0 10px;
+    }
+    .section__title {
+      font-size: 36px;
+      display: inline-block;
+      border-left: #a3dea2 solid 15px;
+      padding-left: 15px;
+      margin-bottom: 30px;
+    }
+    .section__context {
+      font-size: 16px;
+      line-height: 2em;
+    }
+    .section__btn {
+      margin-top: 80px;
+      font-size: 36px;
+      margin-bottom: 50px;
+    }
+    .section__btn button {
+      padding: 40px 60px;
+      display: inline-block;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.1s;
+      border: 1.2px solid black;
+    }
+    .section__btn button:hover {
+      transform: scale(1.1);
+    }
+    .section__btn .btn-order {
+      background-color: #a8e8e1;
+      color: #3e613d;
+      margin-right: 25px;
+    }
+    .section__btn .btn-search {
+      background-color: #f9f9b5;
+      color: #3e613d;
+    }
+    .menu {
+      text-align: center;
+    }
+    .menu__img {
+      
+      display: flex;
+    }
+    .menu__img div {
+        width: 100%;
+    }
+    .menu__img img {
+      width: 100%;
+    }
+    .review {
+      text-align: center;
+      margin: 50px auto;
+    }
+    .review__comment {
+      display: flex;
+      margin-top: 50px;
+      justify-content: center;
+    }
+    .review__area {
+      position: relative;
+      width: 35%;
+      box-sizing: border-box;
+      display: inline-block;
+      margin-right: 15px;
+      border: #c7e5ec 1px solid;
+    }
+    .review__photo img {
+      position: absolute;
+      width: 75px;
+      height: 75px;
+      left: 50%;
+      top: -50%;
+      transform: translate(-50%, 45%);
+    }
+    .review__photo span {
+      position: absolute;
+      left: 50%;
+      top: 15%;
+      font-size: 16px;
+      transform: translate(-50%, 15%);
+    }
+    .review__content {
+      margin-top: 5px;
+      padding: 60px 14px 36px 14px;
+      font-size: 14px;
+      height: 73px;
+      font-family: MicrosoftJhengHei;
+      line-height: 1.6em;
+    }
+    .fotter {
+      margin-top: 40px;
+      text-align: center;
+    }
+    .fotter__wrapper {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      margin-top: 20px;
+      padding: 15px 20px;
+      line-height: 26px;
+      background: #e8efee;
+    }
+    .fotter__top {
+      margin-left: 20px;
+      margin-right: 16px;
+    }
+    .fotter__top-title {
+      color:#489846;
+      font-size: 36px;
+      padding-bottom: 10px;
+      line-height: 36px;
+    }
+    .fotter__bottom {
+      color: #484848;
+    }
+    .fotter__info {
+      background: #35564b;
+      color:white;
+      font-size: 16px;
+      text-align: center;
+      padding: 20px 5px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__wrap">
+      <div class="nav__name">Just A Bite!</div>
+      <div class="nav__list-wrap">
+        <ul class="nav__list">
+          <li class="nav__list-item active"><a href="#">抽個大獎</a></li>
+          <li class="nav__list-item"><a href="#">我要點餐</a></li>
+          <li class="nav__list-item"><a href="#">查詢訂單</a></li>
+          <li class="nav__list-item"><a href="#">常見問題</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <section class="banner">
+    <div class="banner__context">
+      咬一口廚房
+    </div>
+  </section>
+  <section class="section">
+    <div class="section__title">
+      當輕食之風盛起
+    </div>
+    <div class="section__context">
+      由於現代人生活忙碌，常以外食為主，當高糖、高鹽、高油成為人們的日常，會導致慢性疾病與肥胖的機率大增。
+      <br/>
+      我們定期走訪農田，選用最天然、營養的食材，以簡單的烹調方式處理，最大化忠實呈現食材原本的鮮味。
+      <br/>
+      咬一口不只賣餐點，我們希望能夠讓大家愛上料理的魅力，餐館特意打造全開放式廚房，烹調透明化，也不定時舉辦美食廚房DIY，讓大家體驗不需要過多調味，就能擁有千變萬化的食物口感。
+      <br/>
+    </div>
+    <div class="section__btn">
+      <button class="btn-order">我要點餐</button>
+      <button class="btn-search">查詢訂單</button>
+    </div>
+  </section>
+  <section class="menu">
+    <div class="section__title">Menu 搶先看</div>
+    <div class="menu__img">
+      <div><img src="./assets/f-001@2x.png"/></div>
+      <div><img src="./assets/f-002@2x.png"/></div>
+      <div><img src="./assets/f-003@2x.png"/></div>
+      <div><img src="./assets/f-004@2x.png"/></div>
+    </div>
+  </section>
+  <section class="review">
+    <div class="section__title">吃過都說好</div>
+    <div class="review__comment">
+        <div class="review__area">
+          <div class="review__photo">
+            <span>國父桑</span><img src="./assets/photo1.png"/>
+          </div>
+          <div class="review__content">
+            我一生疲於建國，去過日本，去過歐洲，卻從未到過台北101，也從來沒有吃過這麼好吃的東西...今天在時空旅行者的幫助下我終於吃到了...此生再無遺憾 QAQ!!
+          </div>
+        </div>
+        <div class="review__area">
+          <div class="review__photo">
+            <span>可達鴨</span><img src="./assets/photo2.png"/>
+          </div>
+          <div class="review__content">
+            三雙鞋等於30，兩個人加一雙鞋等於20，一雙冰淇淋加一雙冰淇淋加一個人等於13，那$#%$#%^%$^##$%等於多少...唉，大概咬一口就知道了!!!
+          </div>
+        </div>
+        <div class="review__area">
+          <div class="review__photo">
+            <span>旅かえる旅行青蛙</span><img src="./assets/photo3.png"/>
+          </div>
+          <div class="review__content">
+            自從呱呱呱呱呱以後，我呱呱呱呱呱，非常感謝呱呱呱呱呱，下次呱呱呱呱呱我呱呱呱呱呱，一定呱呱呱呱呱!!!
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="fotter">
+    <div class="section__title">
+      我們在哪裡
+    </div>
+    <div class="fotter__address">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.002890183707!2d121.5623502150063!3d25.03397598397251!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abb6da9c9e1f%3A0x1206bcf082fd10a6!2zMTEw5Y-w5YyX5biC5L-h576p5Y2A5L-h576p6Lev5LqU5q61N-iZnw!5e0!3m2!1szh-TW!2stw!4v1598195996807!5m2!1szh-TW!2stw" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </div>
+    <div class="fotter__wrapper">
+      <div class="fotter__top">
+        <div class="fotter__top-title">Just A Bite!</div>
+        <div>Facebook / Instagram / Youtube</div>
+      </div>
+      <div class="fotter__bottom">
+        <div>餐館地址: 天上地下天堂路三分之一里六段520號</div>
+        <div>訂位專線：02-1314-5566</div>
+        <div>營業時間：週一〜週五 09:00~18:00 / 週六、週日、國定假日（含連假）休息</div>
+        <div>email：service@justabite.com.tw</div>
+      </div>
+    </div>
+    <div class="fotter__info">
+      Copyright © 2020 Just A Bite All Rights Reserved. 咬一口股份有限公司版權所有
+    </div>
+  </footer>
+</body>
+
+</html>
