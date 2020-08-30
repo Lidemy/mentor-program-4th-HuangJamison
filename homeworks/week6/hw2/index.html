@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <title>新拖延運動報名表單</title>
+    <style>
+      .google-form {
+        border-top: solid 8px #fad312;
+        box-shadow: 1.8px 2.4px 5px 0 rgba(0, 0, 0, 0.3);
+        width: 50%;
+        max-width: 645px;
+        margin: 130px auto;
+      }
+      .header {
+        margin-top: 50px;
+        padding-left: 40px;
+      }
+      .header__title {
+        font-size: 36px;
+        margin-bottom: 36px;
+      }
+      .header__info {
+        font-size: 14px;
+        line-height: 2em;
+      }
+      .form {
+        margin-top: 20px;
+        padding-left: 40px;
+      }
+      .form__remark {
+        font-size: 16px;
+        color:#e74149;
+        margin-top: 40px;
+        margin-bottom: 35px;
+      }
+      .form__info {
+        display: block;
+      }
+      .form__name, .form__type {
+        display: inline-block;
+        font-size: 20px;
+        padding: 20px 0;
+      }
+      .form__info span {
+        color: #e74149;
+      }
+      .form__info > .form__text {
+        width: 300px;
+        height: 25px;
+        border: solid 1px #d0d0d0;
+        background-color: #fff9f9;
+        color: #d0d0d0;
+        margin-bottom: 52px;
+      }
+      .form__info label {
+        display: inline-block;
+        margin-right: 10px;
+        margin-bottom: 25px;
+      }
+      .form__info > .form__circle {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border: solid 1px #d0d0d0;
+        background-color: #bababa;
+        border-radius: 10px;
+        margin-right: 10px;
+      }
+      .form__detailed {
+        margin: 0 auto;
+        font-size: 14px;
+        padding-bottom: 24px;
+      }
+      .form__button {
+        background-color: #fad312;
+        width: 92px;
+        height: 40px;
+        border-radius: 3px;
+        border: none;
+      }
+      .form__buttom {
+        margin: 20px 0;
+        padding-bottom: 35px;
+      }
+      fotter {
+        display: block;
+        text-align: center;
+        background-color: #000000;
+        color: #999999;
+        font-size: 13px;
+        padding: 25px 0;
+      }
+      @media(max-width: 768px) {
+        .google-form {
+          width: 85%;
+          margin: 60px auto;
+        }
+        .form__info > .form__text {
+          width: 200px;
+        }
+      }
+    </style>
+</head>
+<body>
+  <div class="google-form">
+    <header class="header">
+        <div class="header__title">新拖延運動報名表單</div>
+        <div class="header__info">
+            活動日期：2020/12/10 ~ 2020/12/11 <br/>
+            活動地點：台北市大安區新生南路二段1號
+        </div>
+    </header>
+    <section class="form">
+      <div class="form__remark">
+        * 必填
+      </div>
+      <div class="form__info">
+        <div class="form__name">
+          暱稱
+        </div>
+        <span>*</span><br/>
+        <input class="form__text" type="text" placeholder="您的回答"/><br/>
+        <div class="form__name">
+          電子郵件
+        </div>
+        <span>*</span><br/>
+        <input class="form__text" type="text" placeholder="您的電子郵件"/><br/>
+        <div class="form__name">
+          手機號碼
+        </div>
+        <span>*</span><br/>
+        <input class="form__radio" type="text" placeholder="您的手機號碼"/><br/>
+        <div class="form__type">
+          報名類型
+        </div>
+        <span>*</span><br/>
+        <span class="form__circle"></span><label>躺在床上用想像力實作</label><br/>
+        <span class="form__circle"></span><label>趴在地上滑手機找現成的</label><br/>
+        <div class="form__name">
+          怎麼知道這個活動的？
+        </div>
+        <span>*</span><br/>
+        <input class="form__text" type="text" placeholder="您的回答"/><br/>
+        <div class="form__name">
+          其他 
+        </div>
+        <div class="form__detailed">對活動的一些建議</div>
+        <input class="form__text" type="text" placeholder="您的回答"/><br/>
+        <button class="form__button">提交</button>
+        <div class="form__buttom">請勿透過表單送出您的密碼。</div>
+      </div>
+    </section>
+  </div>
+  <fotter>
+    © 2020 © Copyright. All rights Reserved.   
+  </fotter>      
+</body>
+</html>
