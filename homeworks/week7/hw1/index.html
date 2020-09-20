@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <title>新拖延運動報名表單</title>
+    <style>
+      .google-form {
+        border-top: solid 8px #fad312;
+        box-shadow: 1.8px 2.4px 5px 0 rgba(0, 0, 0, 0.3);
+        width: 50%;
+        max-width: 645px;
+        margin: 130px auto;
+      }
+      .header {
+        margin-top: 50px;
+        padding-left: 40px;
+      }
+      .header__title {
+        font-size: 36px;
+        margin-bottom: 36px;
+      }
+      .header__info {
+        font-size: 14px;
+        line-height: 2em;
+        white-space: pre;
+      }
+      .form {
+        margin-top: 20px;
+        padding-left: 40px;
+      }
+      .form__remark {
+        font-size: 16px;
+        color:#e74149;
+        margin-top: 40px;
+        margin-bottom: 35px;
+      }
+      .form__info {
+        display: block;
+      }
+      .form__name, .form__type {
+        display: inline-block;
+        font-size: 20px;
+        padding: 20px 0;
+      }
+      .form__info span {
+        color: #e74149;
+      }
+      .form__info .form__text {
+        width: 300px;
+        height: 25px;
+        border: solid 1px #d0d0d0;
+        background-color: #fff9f9;
+        color: #d0d0d0;
+        margin-bottom: 52px;
+      }
+      .form__info label {
+        display: inline-block;
+        margin-bottom: 25px;
+      }
+      .form__detailed {
+        margin: 0 auto;
+        font-size: 14px;
+        padding-bottom: 24px;
+      }
+      .form__button {
+        background-color: #fad312;
+        width: 92px;
+        height: 40px;
+        border-radius: 3px;
+        border: none;
+      }
+      .form__buttom {
+        margin: 20px 0;
+        padding-bottom: 35px;
+      }
+      .form__warning {
+        margin-top: -42px;
+        margin-bottom: 52px;
+        color: red;
+        display: block;
+      }
+      .form__warning {
+        margin-top: -42px;
+        margin-bottom: 52px;
+        color: red;
+        display: block;
+      }
+      /* 為了解決破版 */
+      .form__text-area > .form__circle ~ .form__warning {
+        margin-top: 0px;
+      }
+      fotter {
+        display: block;
+        text-align: center;
+        background-color: #000000;
+        color: #999999;
+        font-size: 13px;
+        padding: 25px 0;
+      }
+      @media(max-width: 768px) {
+        .google-form {
+          width: 85%;
+          margin: 60px auto;
+        }
+        .form__info .form__text {
+          width: 200px;
+        }
+      }
+    </style>
+</head>
+<script>
+    window.onload = function() {
+        let createAlert = function (alertText) {
+          const newElement = document.createElement('div');
+          newElement.innerText = alertText;
+          newElement.classList.add('form__warning');
+          return newElement;
+        }
+        const signupForm = document.querySelector('#signup__form');
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let formChecked = true;
+            let formDataText = '您新拖延運動報名表單資料如下：\n';
+            const formName = document.querySelector('#name');
+            const formEmail = document.querySelector('#email');
+            const formPhone = document.querySelector('#phone');
+            const formFoundActivity = document.querySelector('#foundActivity');
+            const formSignType = document.querySelector('input[name=signup_type]:checked');
+            let formDataArray = [
+              formName,
+              formEmail,
+              formPhone,
+              formFoundActivity
+            ];
+            const formChineseNameArray = document.querySelectorAll('.form__name');
+            for (let i=0; i<=formDataArray.length-1; i++) {
+              if (!formDataArray[i].value) {
+                formChecked = false;
+                let alertText = `${formChineseNameArray[i].innerText}沒填`;
+                // 父元件看是否 contains alert
+                const parentNode = formDataArray[i].parentElement;
+                const newElement = createAlert(alertText);
+                if (!formDataArray[i].nextElementSibling) {
+                  parentNode.appendChild(newElement);
+                }
+                continue;
+              }
+              formDataText += `${formChineseNameArray[i].innerText} => ${formDataArray[i].value}\n`
+            }
+            if (!formSignType) {
+              formChecked = false;
+              const parentNode = document.querySelector('.form__circle').parentElement;
+              let alertText = '報名類型沒填';
+              const newElement = createAlert(alertText);
+              let isExistAlert = document.querySelector('.form__text-area > .form__circle ~ .form__warning');
+              if (!isExistAlert) {
+                parentNode.appendChild(newElement);
+              }
+            } else {
+              if (formSignType.value == 'bed') formDataText += `報名類型 => 躺在床上用想像力實作\n`;
+              if (formSignType.value == 'floor') formDataText += `報名類型 => 趴在地上滑手機找現成的\n`;
+            }
+            if (formChecked) {
+              alert(formDataText);
+            }
+        })
+    }
+</script>
+<body>
+  <form id='signup__form'>
+  <div class="google-form">
+    <header class="header">
+        <div class="header__title">新拖延運動報名表單</div>
+        <div class="header__info">
+活動日期：2020/12/10 ~ 2020/12/11
+活動地點：台北市大安區新生南路二段1號
+        </div>
+    </header>
+    <section class="form">
+      <div class="form__remark">
+        * 必填
+      </div>
+      <div class="form__info">
+        <div class="form__name">
+          暱稱
+        </div>
+        <span>*</span>
+        <div class="form__text-area">
+            <input class="form__text" type="text" placeholder="您的回答" id="name" name="name"/>
+        </div>
+        <div class="form__name">
+          電子郵件
+        </div>
+        <span>*</span>
+        <div class="form__text-area">
+            <input class="form__text" type="text" placeholder="您的電子郵件" id="email" name="email"/>
+        </div>
+        <div class="form__name">
+          手機號碼
+        </div>
+        <span>*</span>
+        <div class="form__text-area">
+            <input class="form__text" type="text" placeholder="您的手機號碼" id="phone" name="phone"/>
+        </div>
+        <div class="form__type">
+          報名類型
+        </div>
+        <span>*</span><br/>
+        <div class="form__text-area">
+          <input class="form__circle" type="radio" value="bed" name="signup_type"/>
+          <label>躺在床上用想像力實作</label><br/>
+          <input class="form__circle" type="radio" value="floor" name="signup_type"/>
+          <label>趴在地上滑手機找現成的</label><br/>
+        </div>
+        <div class="form__name">
+          怎麼知道這個活動的？
+        </div>
+        <span>*</span>
+        <div class="form__text-area">
+            <input class="form__text" type="text" placeholder="您的回答" id="foundActivity" name="foundActivity"/>
+        </div>
+        <div class="form__name">
+          其他 
+        </div>
+        <div class="form__detailed">對活動的一些建議</div>
+        <div class="form__text-area">
+          <input class="form__text" type="text" placeholder="您的回答" id="advice" name="advice"/>
+        </div>
+        <div>
+            <input type="submit" class="form__button" value="提交"/>
+        </div>
+
+        <div class="form__buttom">請勿透過表單送出您的密碼。</div>
+      </div>
+    </section>
+  </div>
+  </form>
+  <fotter>
+    © 2020 © Copyright. All rights Reserved.   
+  </fotter>      
+</body>
+</html>

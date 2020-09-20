@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do-tools</title>
+</head>
+<style>
+    .todo {
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .todo__title {
+        font-size: 70px;
+    }
+    .todo__input {
+        width: 15vw;
+        height: 3vh;
+        margin: 2vh 0;
+    }
+    .todo__item-area {
+        line-height: 5vh;
+    }
+    .todo__item {
+        display: flex;
+        flex-direction: row;
+        margin: 3vh 2vw;
+    }
+    .todo__item-activity, .todo__item-complete, .todo__item-delete {
+        margin: 2vh 0.3vw;
+        padding: 0 1vw;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    .todo-complete {
+        text-decoration: line-through;
+    }
+</style>
+<script>
+    window.onload = function() {
+      const todoClick = document.querySelector('.todo__click');
+      const todoArea = document.querySelector('.todo__item-area');
+      const createTodoItem = function (itemName) {
+        let todoItem = document.createElement('div');
+        todoItem.classList.add('todo__item');
+        todoItem.innerHTML = `
+           <span class="todo__item-activity">${itemName}</span>
+           <input class="todo__item-complete" type="button" value="已完成"/>
+           <input class="todo__item-delete" type="button" value="刪除"/>
+        `;
+        todoArea.appendChild(todoItem);
+      }
+      todoClick.addEventListener('click', function () {
+        const todoInput = document.querySelector('.todo__input');
+        if (todoInput.value == '') {
+          alert('你輸入的 todo 為空哦!!')
+        } else {
+          createTodoItem(todoInput.value);
+          todoInput.value = '';
+        }
+      });
+      todoArea.addEventListener('click', function (e) {
+        // 完成按鈕
+        if (e.target.className == 'todo__item-complete') {
+          const todoActivity = e.target.parentNode.querySelector('.todo__item-activity');
+          if (e.target.value == '已完成') {
+            todoActivity.classList.add('todo-complete');
+            e.target.value = '未完成';
+          } else if (e.target.value == '未完成') {
+            todoActivity.classList.remove('todo-complete');
+            e.target.value = '已完成';
+          }
+        }
+        // 刪除按鈕
+        if (e.target.value == '刪除') {
+          const todoItem = e.target.parentNode;
+          todoItem.parentNode.removeChild(todoItem);
+        }
+      })
+    }
+</script>
+<body>
+    <div class="todo">
+        <div class="todo__title"> Todo List </div>
+        <div class="todo__input-area">
+            <input class="todo__input" type="text" placeholder="待辦事項..."/>
+            <input type="button" class="todo__click" value="送出"/>
+        </div>
+        <div class="todo__item-area">
+            <div class="todo__item">
+                <span class="todo__item-activity">我是範例</span>
+                <input class="todo__item-complete" type="button" value="已完成"/>
+                <input class="todo__item-delete" type="button" value="刪除"/>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
