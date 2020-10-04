@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <title>PipePier 餐廳 Q&A </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+  <style>
+    .nav {
+      height: 100px;
+      box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+      background-color: white;
+    }
+    .nav__wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      /* max-width: 1280px; */
+      padding: 15px 20px;
+    }
+    .nav__name {
+      font-size: 36px;
+      color:#489846;
+      margin-left: 20px;
+    }
+    .nav__list {
+      display: flex;
+      margin-right: 10px;
+      text-decoration: none;
+    }
+    .nav__list-item {
+      margin: 0;
+      padding: 10px;
+      list-style: none;
+      transition: all 0.3s ease;
+      border-radius: 8px;
+    }
+    .nav__list-item a {
+      text-decoration: none;
+      font-size: 18px;
+      color: #010101;
+    }
+    .nav__list-item.active, .nav__list-item:hover {
+      background-color: pink;
+    }
+    .nav__list-item.active a, .nav__list-item:hover a {
+      color: white;
+    }
+    .nav__list-item:not(:last-child) {
+      margin-right: 5px;
+    }
+    .section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .section__question {
+      cursor: pointer;
+      width: 35vw;
+      border-bottom: solid #a6e2c0 1px;
+      padding: 5vh 0;
+    }
+    .section__number {
+      font-size: 24px;
+      color: #70b282;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    .section__topic {
+      font-size: 18px;
+      letter-spacing: 2px;
+      line-height: 5vh;
+    }
+    .section__answer {
+      font-size: 16px;
+      padding: 3vh 0;
+      letter-spacing: 2px;
+      display: none;
+      transition: all 0.7s linear;
+      opacity: 0;
+    }
+    .show {
+      display: block;
+    }
+    .show-slowly {
+      opacity: 1;
+    }
+    @media(max-width: 768px) {
+      .nav__wrap {
+        height: 80px;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 0 auto;
+        padding: 0px;
+        width: 100%;
+        text-align: center;
+      }
+      .nav__name {
+        margin-left: 70px;
+      }
+      .nav__list {
+        display: flex;
+        margin: 0 auto;
+      }
+      .nav__list-item {
+        flex: 1;
+        padding: 5px;
+        border-radius: 0px;
+      }
+      .section__question {
+        width: 70vw;
+      }
+    }
+    
+    .fotter {
+      margin-top: 40px;
+      text-align: center;
+    }
+    .fotter__wrapper {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      margin-top: 20px;
+      padding: 15px 20px;
+      line-height: 26px;
+      background: #e8efee;
+    }
+    .fotter__top {
+      margin-left: 20px;
+      margin-right: 16px;
+    }
+    .fotter__top-title {
+      color:#489846;
+      font-size: 36px;
+      padding-bottom: 10px;
+      line-height: 36px;
+    }
+    .fotter__bottom {
+      color: #484848;
+    }
+    .fotter__info {
+      background: #35564b;
+      color:white;
+      font-size: 16px;
+      text-align: center;
+      padding: 20px 5px;
+    }
+  </style>
+</head>
+<script>
+    window.onload = function() {
+      const section = document.querySelector('.section');
+      section.addEventListener('click', (e) => {
+        if (e.target.classList.contains('section__topic')
+        || e.target.classList.contains('section__number')) {
+          const answerNode = e.target.parentNode.querySelector('.section__answer');
+          answerNode.classList.add('show');
+          // 讓他慢慢變成 opacity 1
+          setTimeout(() => {
+            answerNode.classList.add('show-slowly');
+          }, 800);
+          const answerNodes = document.querySelectorAll('.section__answer');
+          for (let i=0; i<=answerNodes.length-1; i++) {
+              if (answerNodes[i] !== answerNode) {
+                answerNodes[i].classList.remove('show-slowly');
+                setTimeout(() => {
+                  answerNodes[i].classList.remove('show');
+                }, 500);
+              }
+          }
+        }
+        // 對其他 answer 移除 classList
+      }, true);
+    }
+</script>
+<body>
+  <nav class="nav">
+    <div class="nav__wrap">
+      <div class="nav__name">Just A Bite!</div>
+      <div class="nav__list-wrap">
+        <ul class="nav__list">
+          <li class="nav__list-item active"><a href="#">抽個大獎</a></li>
+          <li class="nav__list-item"><a href="#">我要點餐</a></li>
+          <li class="nav__list-item"><a href="#">查詢訂單</a></li>
+          <li class="nav__list-item"><a href="#">常見問題</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <div class="section">
+        <div class="section__question">
+            <span class="section__number">Q1:</span>
+            <span class="section__topic">如何辦理退貨？</span>
+            <span class="section__answer">
+                請您至「我的帳戶 > 交易紀錄」點選[我要退訂]並填寫辦退申請，系統會將您的退貨申請傳送給店家，您的退貨申請核准與否，及貨品收回取件方式將由各店家全權負責；您也可以在網站上查詢店家聯絡資訊及詳閱網站上各店家退換貨相關規定，直接與店家聯絡進行退換貨事宜。
+            </span>
+        </div>
+        <div class="section__question">
+            <span class="section__number">Q2:</span>
+            <span class="section__topic">目前提供哪些付款方式？</span>
+            <span class="section__answer">
+                1. 貨到付款
+                2. 線上刷卡
+                3. ATM 轉帳
+            </span>
+        </div>
+        <div class="section__question">
+            <span class="section__number">Q3：</span>
+            <span class="section__topic">線上刷卡如何操作呢？</span>
+            <span class="section__answer">
+                線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～
+            </span>
+        </div>
+        <div class="section__question">
+            <span class="section__number">Q4：</span>
+            <span class="section__topic">如何查詢目前訂單的處理情況？</span>
+            <span class="section__answer">
+                請至[我的帳戶 > 交易紀錄]查詢您在商店街交易的訂單資料。
+            </span>
+        </div>
+        <div class="section__question">
+            <span class="section__number">Q5：</span>
+            <span class="section__topic">訂單成立後，是否可以取消或是更改訂單數量及商品？</span>
+            <span class="section__answer">
+                因系統作業程序的關係，無法提供訂單修改內容，需請您取消訂單後再重新下單。
+            </span>
+        </div>
+        <div class="section__question">
+            <span class="section__number">Q6：</span>
+            <span class="section__topic">我想購買的商品已經缺貨，什麼時候會進貨呢？</span>
+            <span class="section__answer">
+                可訂閱這個商品，當有貨時會通知您。
+            </span>
+        </div>
+    </div>
+    <div class="fotter__wrapper">
+      <div class="fotter__top">
+        <div class="fotter__top-title">Just A Bite!</div>
+        <div>Facebook / Instagram / Youtube</div>
+      </div>
+      <div class="fotter__bottom">
+        <div>餐館地址: 天上地下天堂路三分之一里六段520號</div>
+        <div>訂位專線：02-1314-5566</div>
+        <div>營業時間：週一〜週五 09:00~18:00 / 週六、週日、國定假日（含連假）休息</div>
+        <div>email：service@justabite.com.tw</div>
+      </div>
+    </div>
+    <div class="fotter__info">
+      Copyright © 2020 Just A Bite All Rights Reserved. 咬一口股份有限公司版權所有
+    </div>
+  </footer>
+</body>
+
+</html>
