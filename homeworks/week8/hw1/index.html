@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <title>PipePier 餐廳- 抽獎活動 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+  <style>
+    .nav {
+      height: 100px;
+      box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+      background-color: white;
+    }
+    .nav__wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      /* max-width: 1280px; */
+      padding: 15px 20px;
+    }
+    .nav__name {
+      font-size: 36px;
+      color:#489846;
+      margin-left: 20px;
+    }
+    .nav__list {
+      display: flex;
+      margin-right: 10px;
+      text-decoration: none;
+    }
+    .nav__list-item {
+      margin: 0;
+      padding: 10px;
+      list-style: none;
+      transition: all 0.3s ease;
+      border-radius: 8px;
+    }
+    .nav__list-item a {
+      text-decoration: none;
+      font-size: 18px;
+      color: #010101;
+    }
+    .nav__list-item.active, .nav__list-item:hover {
+      background-color: pink;
+    }
+    .nav__list-item.active a, .nav__list-item:hover a {
+      color: white;
+    }
+    .nav__list-item:not(:last-child) {
+      margin-right: 5px;
+    }
+    
+    .show {
+      display: block;
+    }
+    @media(max-width: 768px) {
+      .nav__wrap {
+        height: 80px;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 0 auto;
+        padding: 0px;
+        width: 100%;
+        text-align: center;
+      }
+      .nav__name {
+        margin-left: 70px;
+      }
+      .nav__list {
+        display: flex;
+        margin: 0 auto;
+      }
+      .nav__list-item {
+        flex: 1;
+        padding: 5px;
+        border-radius: 0px;
+      }
+    }
+    #section {
+        width: 100%;
+        height: 800px;
+        position: relative;
+    }
+    #section.origin {
+        background: url('./bg-img.png') no-repeat;
+        background-size: cover;
+    }
+    #section.first-prize{
+        background: url('https://cdn.pixabay.com/photo/2019/07/04/06/35/flight-4315953_1280.jpg') no-repeat;
+        background-size: cover;
+    }
+    #section.second-prize{
+        background: url('https://cdn.pixabay.com/photo/2016/11/30/08/46/living-room-1872192_1280.jpg') no-repeat;
+        background-size: cover;
+    }
+    #section.third-prize{
+        background: url('https://cdn.pixabay.com/photo/2017/08/10/03/00/youtube-2617510_1280.jpg') no-repeat;
+        background-size: cover;
+    }
+    .award-area {
+        background-color: gray;
+        opacity: 0.6;
+        color: white;
+        width: 400px;
+        text-align: center;
+        margin: 0 auto;
+        padding: 20px 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -55%);
+    }
+    .award-area .award-btn {
+        width: 120px;
+        height: 40px;
+        border-radius: 5px;
+        background-color: red;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+    #section.no-prize{
+        background-color: black;
+        color: white;
+    }
+    .announce {
+        width: 530px;
+        height: 580px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -55%);
+        background-color: white;
+    }
+    .announce__title {
+        color: #5ec1b6;
+        font-size: 24px;
+        text-align: center;
+        margin: 40px 0;
+    }
+    .announce__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .announce__time, .announce__detail, .announce__prize {
+        margin: 20px 0;
+        font-size: 18px;
+        padding: 0px 35px;
+    }
+    .announce__time > span:last-child, .announce__detail > span:last-child, .announce__prize > span:last-child {
+        font-size: 16px;
+        margin-left: 10px;
+        color:#322929;
+        font-weight: 350;
+        line-height: 26px;
+    }
+    .announce__prize {
+        border-bottom: solid 0.5px #cdcdcd;
+    }
+    .announce__btn_area {
+        text-align: center;
+    }
+    .announce__btn_area .announce__btn {
+        width: 480px;
+        height: 70px;
+        border-radius: 8px;
+        background-color: red;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    .hide {
+        display: none;
+    }
+    .fotter {
+      text-align: center;
+    }
+    .fotter__wrapper {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      padding: 15px 20px;
+      line-height: 26px;
+      background: #e8efee;
+    }
+    .fotter__top {
+      margin-left: 20px;
+      margin-right: 16px;
+    }
+    .fotter__top-title {
+      color:#489846;
+      font-size: 36px;
+      padding-bottom: 10px;
+      line-height: 36px;
+    }
+    .fotter__bottom {
+      color: #484848;
+    }
+    .fotter__info {
+      background: #35564b;
+      color:white;
+      font-size: 16px;
+      text-align: center;
+      padding: 20px 5px;
+    }
+  </style>
+</head>
+<script>
+    function createText(text) {
+        const awardArea = document.querySelector('.award-area');
+        awardArea.classList.remove('hide');
+        const awardText = document.querySelector('.award-area>.award-text');
+        awardText.innerText = text;
+    }
+    function getData () {
+        const url = 'https://dvwhnbka7d.execute-api.us-east-1.amazonaws.com/default/lottery';
+        const xml = new XMLHttpRequest();
+        const section = document.getElementById('section');
+        xml.onload = function () {
+            if (xml.status >= 200 && xml.status <400) {
+                let res = xml.responseText;
+                res = JSON.parse(res);
+                if ('prize' in res) {
+                    // 將其他className 刪除
+                    document.querySelector('.announce').classList.add('hide');
+                    section.className = '';
+                    let prizeText = '';
+                    switch (res.prize) {
+                        case 'FIRST':
+                            prizeText = '恭喜你中頭獎了！日本東京來回雙人遊！';
+                            section.classList.add('first-prize');
+                            break;
+                        case 'SECOND':
+                            prizeText = '二獎！90 吋電視一台！';
+                            section.classList.add('second-prize');
+                            break;
+                        case 'THIRD':
+                            prizeText = '恭喜你抽中三獎：知名 YouTuber 簽名握手會入場券一張，bang！';
+                            section.classList.add('third-prize');
+                            break;
+                        default:
+                            prizeText = '銘謝惠顧';
+                            section.classList.add('no-prize');
+                            break;
+                    }
+                    createText(prizeText);
+                } else {
+                    alert('系統不穩定，請再試一次');
+                }
+            } else {
+                alert('系統不穩定，請再試一次');
+            }
+        }
+        xml.open('GET', url, true);
+        xml.send();
+    }
+    window.onload = function () {
+        const announce__btn = document.querySelector('.announce__btn');
+        announce__btn.addEventListener('click', function() {
+            getData();
+        });
+        const awardBtn = document.querySelector('.award-btn');
+        awardBtn.addEventListener('click', function () {
+            document.querySelector('.announce').classList.remove('hide');
+            document.getElementById('section').classList = '';
+            document.getElementById('section').classList.add('origin');
+        });
+    }
+</script>
+<body>
+  <nav class="nav">
+    <div class="nav__wrap">
+      <div class="nav__name">Just A Bite!</div>
+      <div class="nav__list-wrap">
+        <ul class="nav__list">
+          <li class="nav__list-item active"><a href="#">抽個大獎</a></li>
+          <li class="nav__list-item"><a href="#">我要點餐</a></li>
+          <li class="nav__list-item"><a href="#">查詢訂單</a></li>
+          <li class="nav__list-item"><a href="#">常見問題</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <section id="section" class="origin">
+    <div class="award-area hide">
+        <div class="award-text"></div>
+        <div class="award-btn-area">
+            <input type="button" class="award-btn" value="回到抽獎畫面"/>
+        </div>
+    </div>
+    <div class="announce">
+        <div class="announce__title">2020 夏日輕盈特賞！ 抽獎活動辦法</div>
+        <div class="announce__content">
+            <div class="announce__time">
+                <span>活動期間：</span>
+                <span>2020/06/01~2020/07/01</span>
+            </div>
+            <div class="announce__detail">
+                <span>活動說明：</span>
+                <span>今天老闆佛心來著決定給大家發獎勵，有看有機會，沒看只能幫QQ！只要在店內消費滿1000000元即有機會獲得 - 頭獎日本東京來回雙人遊！</span>
+            </div>
+            <div class="announce__prize">
+                <span>獎  品：</span>
+                <span style="white-space:pre-wrap">
+
+頭獎一名：日本東京來回雙人遊(市價14990元)
+貳獎三名：90 吋電視一台(市價5990元)
+參獎十名：知名 YouTuber 簽名握手會入場券一張(市價1500元)
+                </span>
+            </div>
+            <div class="announce__btn_area">
+                <input type="button" class="announce__btn" value="我要抽獎"/>
+            </div>
+        </div>
+    </div>
+  </section>
+  <footer>
+    <div class="fotter__wrapper">
+      <div class="fotter__top">
+        <div class="fotter__top-title">Just A Bite!</div>
+        <div>Facebook / Instagram / Youtube</div>
+      </div>
+      <div class="fotter__bottom">
+        <div>餐館地址: 天上地下天堂路三分之一里六段520號</div>
+        <div>訂位專線：02-1314-5566</div>
+        <div>營業時間：週一〜週五 09:00~18:00 / 週六、週日、國定假日（含連假）休息</div>
+        <div>email：service@justabite.com.tw</div>
+      </div>
+    </div>
+    <div class="fotter__info">
+      Copyright © 2020 Just A Bite All Rights Reserved. 咬一口股份有限公司版權所有
+    </div>
+  </footer>
+</body>
+
+</html>
