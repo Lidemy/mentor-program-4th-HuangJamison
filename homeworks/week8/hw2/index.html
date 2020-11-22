@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<style>
+    body {
+        background: url('./joe-woods-4Zaq5xY5M_c-unsplash.jpg') repeat;
+        margin: 5px;
+    }
+    .nav {
+      height: 70px;
+    }
+    .nav__wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 1200px;
+    }
+    .nav__name {
+      font-size: 24px;
+      color:#03233f;
+      width: 300px;
+    }
+    .nav__list {
+      display: flex;
+      margin-right: 5px;
+      text-decoration: none;
+    }
+    .nav__list-item {
+      margin: 0;
+      padding: 15px;
+      list-style: none;
+      transition: all 0.3s ease;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .nav__list-item a {
+      text-decoration: none;
+      font-size: 14px;
+      color: #010101;
+    }
+    .nav__list-item.active, .nav__list-item:hover {
+      background-color: pink;
+    }
+    .nav__list-item.active a, .nav__list-item:hover a {
+      color: white;
+      font-size: 16px;
+    }
+    .nav__list-item:not(:last-child) {
+      margin-right: 5px;
+    }
+    .title {
+        color: brown;
+        text-align: center;
+        font-size: 22px;
+        padding: 5px;
+    }
+    .livestream-total {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .livestream {
+        box-shadow: 0px 0px 5px red;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        width: 600px;
+        height: 470px;
+        margin: 0 auto;
+    }
+    .livestream a {
+        cursor: pointer;
+        text-decoration: none;
+        color: white;
+    }
+    .livestream a:hover .livestream__img {
+        background-color: black;
+        color: red;
+        transform: scale(1.05);
+    }
+    .livestream a:hover .livestream__intro {
+        background-color: black;
+        color: red;
+        transform: scale(1.05);
+    }
+    .livestream__img {
+        padding: 0;
+    }
+    .livestream__img img {
+        width: 600px;
+    }
+    .livestream__intro {
+        background-color: rgb(109, 106, 106);
+        width: 600px;
+        height: 120px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+    }
+    .livestream__channel-img {
+        padding: 5px;
+        margin: 5px 0;
+    }
+    .livestream__channel-img img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+    .livesteam__about {
+        margin: 0 auto;
+        width: 300px;
+        height: 100px;
+        font-size: 14px;
+        letter-spacing: 1px;
+        padding: 20px 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    .livesteam__topic {
+        line-height: 14px;
+        padding-bottom: 10px;
+    }
+    @media(max-width: 768px) {
+        .nav {
+            height: 50vw;
+            text-align: center;
+        }
+        .nav__wrap {
+            width: 100vw;
+        }
+        .nav__name {
+            width: 40vw;
+            font-size: 2.5vw;
+        }
+        .nav__list-wrap {
+            margin-top: 0.5vw;
+        }
+        .nav__list {
+            width: 70vw;
+            display: flex;
+            flex-direction: column;
+        }
+        .nav__list-item {
+            padding: 1.5vw;
+        }
+        .nav__list-item a {
+            font-size: 1.5vw;
+        }
+        .title {
+            font-size: 1vw;
+            text-align: center;
+        }
+        
+        .livestream {
+            box-shadow: 0px 0px 5px red;
+            margin-bottom: 2vw;
+            padding-bottom: 2vw;
+            height: 95vw;
+        }
+        .livestream__intro {
+            display: flex;
+            flex-direction: row;
+            height: 40vw;
+        }
+        .livestream a {
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+        }
+        .livestream a:hover .livestream__img {
+            background-color: black;
+            color: red;
+            transform: scale(1.02);
+        }
+        .livestream a:hover .livestream__intro {
+            background-color: black;
+            color: red;
+            transform: scale(1.02);
+        }
+        .livestream a:hover .livesteam__about {
+            color: red;
+            font-size: 3.2vw;
+        }
+        .livestream__img img {
+            width: 95vw;
+            height: 50vw;
+            padding: 1.5vw 1.5vw 0 1.5vw;
+        }
+        .livestream__intro {
+            background-color: rgb(109, 106, 106);
+            width: 95vw;
+            margin: 0 auto;
+        }
+        .livestream__channel-img {
+            padding: 2vw 5vw 2vw 2vw;
+            margin: 5vw auto;
+        }
+        .livestream__channel-img img {
+            width: 20vw;
+            height: 20vw;
+            border-radius: 50%;
+        }
+        .livesteam__about {
+            margin: 0 auto;
+            width: 70vw;
+            height: 20vw;
+            font-size: 2vw;
+        }
+        .livesteam__topic {
+            line-height: 5vw;
+            padding-bottom: 2vw;
+        }
+    }
+</style>
+<script src="./getApi.js"></script>
+<body>
+    <nav class="nav">
+        <div class="nav__wrap">
+          <div class="nav__name">Twitch Hito Livestream</div>
+          <div class="nav__list-wrap">
+            <ul class="nav__list">
+              <li class="nav__list-item"><a data-game="">Top 1</a></li>
+              <li class="nav__list-item"><a data-game="">Top 2</a></li>
+              <li class="nav__list-item"><a data-game="">Top 3</a></li>
+              <li class="nav__list-item"><a data-game="">Top 4</a></li>
+              <li class="nav__list-item"><a data-game="">Top 5</a></li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <section>
+        <h1 class="title">
+            <span class="game_chosen">
+    
+            </span>
+            <span>
+                Top 20 Livestream By current viewers
+            </span>
+        </h1>
+        <div class="livestream-total">
+        </div>
+    </section>
+
+</body>
+</html>
