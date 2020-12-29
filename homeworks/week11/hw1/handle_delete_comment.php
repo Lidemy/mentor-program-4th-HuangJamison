@@ -11,14 +11,16 @@
     }
     $commentId = $_POST['id'];
     // update
-    $is_deleted = 1;
     // 多加入 session 機制
+    if (empty($_SESSION['username'])) {
+        die('尚未登入哦');
+    }
     session_start();
     $username = $_SESSION['username'];
     // 確認為此 username 才給刪
-    $stmt = $conn->prepare("UPDATE Jamie_comments SET is_deleted = ?
+    $stmt = $conn->prepare("UPDATE Jamie_comments SET is_deleted = 1
     WHERE id = ? AND username = ?");
-    $stmt->bind_param("iis", $is_deleted, $commentId, $username);
+    $stmt->bind_param("is", $commentId, $username);
     $result = $stmt->execute();
     if (!empty($result)) {
         $success = [

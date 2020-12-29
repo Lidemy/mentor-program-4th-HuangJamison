@@ -1,6 +1,7 @@
 <?php
     // 載入 conn.php
     require_once('conn.php');
+    require_once('utils.php');
     $stmt = $conn->prepare('SELECT username, nickname FROM Jamie_users');
     $stmt->execute();
     $result = $stmt->get_result();
@@ -102,8 +103,8 @@
         <?php if (!empty($result)): ?>
             <?php while ($row = $result->fetch_assoc()): ?>
                 <tr>
-                    <td><?= $row['username']; ?></th>
-                    <td><?= $row['nickname']; ?></th>
+                    <td><?= escape($row['username']); ?></th>
+                    <td><?= escape($row['nickname']); ?></th>
                 </td>
             <?php endwhile; ?>
         <?php else: ?>

@@ -7,10 +7,10 @@
     }
     // 拿取 username
     session_start();
-    $username = '';
-    if (!empty($_SESSION['username'])) {
-        $username = $_SESSION['username'];
+    if (empty($_SESSION['username'])) {
+        die('您尚未登入哦');
     }
+    $username = $_SESSION['username'];
     $content = $_POST['content'];
     // insert
     $stmt = $conn->prepare("INSERT INTO Jamie_comments(username,content)
