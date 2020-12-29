@@ -175,16 +175,16 @@
         <?php if (!empty($result)): ?>
             <?php while ($row = $result->fetch_assoc()): ?>
                 <tr>
-                    <td><?= $row['username']; ?></td>
-                    <td><?= $row['nickname']; ?></td>
-                    <td><?= $authReferer[$row['auth']]; ?></td>
+                    <td><?= escape($row['username']); ?></td>
+                    <td><?= escape($row['nickname']); ?></td>
+                    <td><?= escape($authReferer[$row['auth']]); ?></td>
                     <?php if ($row['auth'] != 'admin'): ?>
                     <td class="change_auth_area">
                         <?php foreach ($authReferer as $key => $value): ?>
                             <?php if ($row['auth'] == $key) : ?>
-                                <a style="text-decoration: none"><?=$value;?></a>
+                                <a style="text-decoration: none"><?=escape($value);?></a>
                             <?php elseif ($key != 'admin'): ?>
-                                <a href="./handle_update_auth.php" data-id="<?= $row['id'];?>" data-auth="<?= $key;?>"><?=$value;?></a>
+                                <a href="./handle_update_auth.php" data-id="<?= $row['id'];?>" data-auth="<?= $key;?>"><?=escape($value);?></a>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </td>

@@ -12,6 +12,14 @@
         echo json_encode($failure);
         return;
     }
+    // 拿取 username
+    session_start();
+    if (empty($_SESSION['username'])) {
+        die('您尚未登入哦');
+    }
+    if ($_SESSION['username'] != 'admin') {
+        die('只有最高權限才能改');
+    }
     // update
     $stmt = $conn->prepare("UPDATE Jamie_users SET auth = ?
     WHERE id = ?");
@@ -31,4 +39,3 @@
     ];
     header('Content-Type: application/json');
     echo json_encode($failure);
-
